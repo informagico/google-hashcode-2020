@@ -22,51 +22,50 @@ namespace google_hashcode_2020
 		static string inputExt = "in";
 		static string outputExt = "out";
 
-		static int Solve(int maxSlices, int[] data, string fileName)
+		static Tuple<int, List<int>> Solve(int maxSlices, int[] data, int startIndex)
 		{
-			List<int> chosenPizzas = new List<int>();
 			int slices = 0;
-			int index;
+			int index = 0;
 
-			for (int i = data.Length - 1; i >= 0; i--)
+			List<int> chosenPizzas = new List<int>();
+
+			for (int i = startIndex; i >= startIndex - (data.Length - 1); i--)
 			{
-				int sum = 0;
 				index = i;
-				List<int> tempPizzas = new List<int>();
+				if (index < 0)
+					index = data.Length + i;
 
-				for (int j = index; j >= 0; j--)
-				{
-					int value = data[j];
+				if ((slices + data[index]) > maxSlices)
+					continue;
 
-					int tempsum = sum + value;
+				slices += data[index];
+				chosenPizzas.Add(index);
 
-					if (tempsum == maxSlices)
-					{
-						sum = tempsum;
-						tempPizzas.Add(j);
-						break;
-					}
-					else if (tempsum < maxSlices)
-					{
-						sum = tempsum;
-						tempPizzas.Add(j);
-					}
-				}
-
-				if (slices < sum)
-				{
-					slices = sum;
-					chosenPizzas = tempPizzas;
-				}
+				if (slices == maxSlices)
+					break;
 			}
 
-			chosenPizzas.Reverse();
+			chosenPizzas.Sort();
+
+			return new Tuple<int, List<int>>(slices, chosenPizzas);
+		}
+
+		static Tuple<int, List<int>> Solve(int maxSlices, int[] data, string fileName)
+		{
+			Tuple<int, List<int>> bestSolution = new Tuple<int, List<int>>(0, new List<int>());
+			for (int i = data.Length - 1; i >= 0; i--)
+			{
+				var result = Solve(maxSlices, data, i);
+				if (result.Item1 >= bestSolution.Item1)
+					bestSolution = result;
+			}
+
 			StreamWriter sw = new StreamWriter(Path.Combine(outputFolder, fileName) + "." + outputExt);
-			sw.WriteLine(chosenPizzas.Count());
-			sw.WriteLine(string.Join(" ", chosenPizzas));
+			sw.WriteLine(bestSolution.Item2.Count());
+			sw.WriteLine(string.Join(" ", bestSolution.Item2));
 			sw.Close();
 
-			return slices;
+			return bestSolution;
 		}
 
 		static void Main(string[] args)
@@ -89,10 +88,10 @@ namespace google_hashcode_2020
 				int pizzaTypes = Convert.ToInt32(rows[0].Split(' ')[1]);
 				int[] data = (from q in rows[1].Split(' ') select Convert.ToInt32(q)).ToArray();
 
-				int score = Solve(pizzaSlices, data, f);
-				totalScore += score;
+				var result = Solve(pizzaSlices, data, f);
+				totalScore += result.Item1;
 
-				Console.WriteLine((score + " points").PadLeft(20));
+				Console.WriteLine((result.Item1 + " points").PadLeft(20));
 			}
 
 			sw.Stop();
