@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/launch.json
+.vscode/tasks.json
+practice-round/bin/*
+practice-round/bin
+practice-round/obj/*
+practice-round/obj
+practice-round/output/*
