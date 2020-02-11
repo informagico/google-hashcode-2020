@@ -1,0 +1,11 @@
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/bin/Debug/netcoreapp3.1/google-hashcode-2020
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/bin/Debug/netcoreapp3.1/google-hashcode-2020.deps.json
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/bin/Debug/netcoreapp3.1/google-hashcode-2020.runtimeconfig.json
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/bin/Debug/netcoreapp3.1/google-hashcode-2020.runtimeconfig.dev.json
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/bin/Debug/netcoreapp3.1/google-hashcode-2020.dll
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/bin/Debug/netcoreapp3.1/google-hashcode-2020.pdb
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/obj/Debug/netcoreapp3.1/google-hashcode-2020.csprojAssemblyReference.cache
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/obj/Debug/netcoreapp3.1/google-hashcode-2020.AssemblyInfoInputs.cache
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/obj/Debug/netcoreapp3.1/google-hashcode-2020.AssemblyInfo.cs
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/obj/Debug/netcoreapp3.1/google-hashcode-2020.dll
+/Users/alessandromagoga/Repositories/informagico/google-hashcode-2020/practice-round/src/obj/Debug/netcoreapp3.1/google-hashcode-2020.pdb

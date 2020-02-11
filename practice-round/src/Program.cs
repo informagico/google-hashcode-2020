@@ -8,8 +8,8 @@ namespace google_hashcode_2020
 {
 	class Program
 	{
-		static string inputFolder = "input";
-		static string outputFolder = "output";
+		static string inputFolder = "../input";
+		static string outputFolder = "../output";
 
 		static string[] inputFiles = {
 				"a_example",
@@ -19,8 +19,8 @@ namespace google_hashcode_2020
 				"e_also_big",
 			};
 
-		static string inputExt = "in";
-		static string outputExt = "out";
+		static string inputExt = ".in";
+		static string outputExt = ".out";
 
 		static Tuple<int, List<int>> Solve(int maxSlices, int[] data, int startIndex)
 		{
@@ -60,7 +60,7 @@ namespace google_hashcode_2020
 					bestSolution = result;
 			}
 
-			StreamWriter sw = new StreamWriter(Path.Combine(outputFolder, fileName) + "." + outputExt);
+			StreamWriter sw = new StreamWriter(Path.Combine(outputFolder, fileName) + outputExt);
 			sw.WriteLine(bestSolution.Item2.Count());
 			sw.WriteLine(string.Join(" ", bestSolution.Item2));
 			sw.Close();
@@ -82,7 +82,7 @@ namespace google_hashcode_2020
 			{
 				Console.Write(("Solving file '" + f + "' ...").PadRight(40));
 
-				string[] rows = new StreamReader(Path.Combine(inputFolder, f) + "." + inputExt).ReadToEnd().Split('\n');
+				string[] rows = new StreamReader(Path.Combine(inputFolder, f) + inputExt).ReadToEnd().Split('\n');
 
 				int pizzaSlices = Convert.ToInt32(rows[0].Split(' ')[0]);
 				int pizzaTypes = Convert.ToInt32(rows[0].Split(' ')[1]);
