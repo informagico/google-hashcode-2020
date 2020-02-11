@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -23,24 +24,43 @@ namespace google_hashcode_2020
 
 		static int Solve(int maxSlices, int[] data, string fileName)
 		{
-			int slices = 0;
-
 			List<int> chosenPizzas = new List<int>();
+			int slices = 0;
+			int index;
 
 			for (int i = data.Length - 1; i >= 0; i--)
 			{
-				if ((slices + data[i]) > maxSlices)
-					continue;
+				int sum = 0;
+				index = i;
+				List<int> tempPizzas = new List<int>();
 
-				slices += data[i];
-				chosenPizzas.Add(i);
+				for (int j = index; j >= 0; j--)
+				{
+					int value = data[j];
 
-				if (slices == maxSlices)
-					break;
+					int tempsum = sum + value;
+
+					if (tempsum == maxSlices)
+					{
+						sum = tempsum;
+						tempPizzas.Add(j);
+						break;
+					}
+					else if (tempsum < maxSlices)
+					{
+						sum = tempsum;
+						tempPizzas.Add(j);
+					}
+				}
+
+				if (slices < sum)
+				{
+					slices = sum;
+					chosenPizzas = tempPizzas;
+				}
 			}
 
 			chosenPizzas.Reverse();
-
 			StreamWriter sw = new StreamWriter(Path.Combine(outputFolder, fileName) + "." + outputExt);
 			sw.WriteLine(chosenPizzas.Count());
 			sw.WriteLine(string.Join(" ", chosenPizzas));
@@ -55,6 +75,9 @@ namespace google_hashcode_2020
 
 			if (!Directory.Exists(outputFolder))
 				Directory.CreateDirectory(outputFolder);
+
+			Stopwatch sw = new Stopwatch();
+			sw.Start();
 
 			foreach (string f in inputFiles)
 			{
@@ -72,7 +95,9 @@ namespace google_hashcode_2020
 				Console.WriteLine((score + " points").PadLeft(20));
 			}
 
-			Console.WriteLine("\nTotal score: " + totalScore);
+			sw.Stop();
+
+			Console.WriteLine("\nTotal score: " + totalScore + " (" + sw.ElapsedMilliseconds + " ms)");
 			Console.WriteLine("\nOK");
 		}
 	}
