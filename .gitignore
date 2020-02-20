@@ -1,6 +1,7 @@
 .DS_Store
-practice-round/bin/*
-practice-round/bin
-practice-round/obj/*
-practice-round/obj
+practice-round/src/bin/*
+practice-round/src/obj/*
 practice-round/output/*
+qualification-round/src/bin/*
+qualification-round/src/obj/*
+qualification-round/output/*
